@@ -23,7 +23,7 @@
   a{color:inherit}
   :focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:6px}
   .wrap{width:var(--wrap);margin-inline:auto}
-  h2{font-family:var(--display);font-weight:800;font-stretch:55%;text-transform:uppercase;font-size:clamp(2.4rem,9vw,5.6rem);line-height:.9;overflow-wrap:anywhere;letter-spacing:.005em}
+  h2{font-family:var(--display);font-weight:800;font-stretch:55%;text-transform:uppercase;font-size:clamp(2.4rem,9vw,5.6rem);line-height:.9;overflow-wrap:break-word;hyphens:auto;letter-spacing:.005em}
   .lam{font-family:var(--display);font-stretch:50%;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .intro{max-width:52ch;color:var(--muted);font-size:1.2rem;margin-top:.8rem}
@@ -115,7 +115,7 @@
   .panel .ref{font-size:.92rem;color:#A8A8A8;margin-top:0;margin-bottom:1.4rem}
   .credits{margin-top:4.5rem;font-family:var(--display);font-weight:700;font-stretch:52%;text-transform:uppercase;font-size:clamp(2rem,8vw,6rem);line-height:.92;color:rgba(255,255,255,.28)}
   .credits span{color:#fff}
-  @media (max-width:820px){.picker{grid-template-columns:1fr}.tabs{grid-template-columns:1fr 1fr}}
+  @media (max-width:820px){.picker{grid-template-columns:minmax(0,1fr)}.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.tabs button{font-size:1rem;padding:.85rem .9rem}.tabs button small{display:none}}
 
   /* ============ MARQUES ============ */
   .marques .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,6vw,5rem);align-items:start}
@@ -156,6 +156,55 @@
   .status.err{color:#B3261E}
   @media (max-width:860px){.book .wrap,.row{grid-template-columns:1fr}}
 
+  /* ============ GALERIES VIDÉO ============ */
+  .gal-head{margin-top:4rem;display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1.2rem}
+  .gal-head h3{font-family:var(--display);font-weight:800;font-stretch:55%;text-transform:uppercase;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1}
+  .gal-head p{color:var(--muted)}
+  .scene .gal-head p,.voix .intro{color:rgba(255,255,255,.65)}
+  .reels{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(210px,250px);gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:1.4rem;padding-bottom:.8rem;scrollbar-width:thin}
+  .reel{scroll-snap-align:start;position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#000;color:#fff}
+  .scene .reel{background:#1E1E1E}
+  .reel button{all:unset;cursor:pointer;position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1rem;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.75))}
+  .reel button:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+  .reel .play{position:absolute;top:50%;left:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:transform .2s}
+  .reel .play::after{content:"";border-left:16px solid #000;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+  .reel button:hover .play{transform:scale(1.08)}
+  .reel .src{position:absolute;top:.8rem;left:.8rem;font-size:.75rem;font-weight:700;background:var(--red);padding:.2rem .55rem;border-radius:999px}
+  .reel b{font-size:1.02rem;line-height:1.25}
+  .reel small{opacity:.75;margin-top:.2rem;font-size:.85rem}
+  .reel iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .reel.empty{background:transparent;border:2px dashed #CFCFCF;color:var(--muted);display:grid;place-items:center;text-align:center;padding:1rem;font-size:.92rem}
+  .scene .reel.empty{border-color:rgba(255,255,255,.22);color:rgba(255,255,255,.55)}
+  .reel-link{position:absolute;right:.6rem;bottom:.6rem;z-index:2;font-size:.78rem;font-weight:600;background:#fff;color:#000;padding:.25rem .6rem;border-radius:999px;text-decoration:none}
+
+  .marques .wrap-stack{display:block}
+  .book h2{font-size:clamp(2.4rem,6vw,4.2rem)}
+  /* Partenaires */
+  .partners{list-style:none;margin-top:3.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-top:2px solid #000}
+  .partners li{padding:1.2rem 1rem 1.2rem 0;border-bottom:1px solid var(--line);display:grid}
+  .partners span{font-family:var(--display);font-weight:800;font-stretch:55%;text-transform:uppercase;font-size:2rem;line-height:1}
+  .partners small{color:var(--muted);margin-top:.3rem}
+
+  /* ============ VOIX OFF ============ */
+  .voix{background:#000;color:#fff}
+  .voix-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1.5rem}
+  .voix .btn-lamp{background:#fff;color:#000}
+  .usages{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}
+  .usages li{border:1.5px solid rgba(255,255,255,.3);border-radius:999px;padding:.45rem 1rem;font-weight:500}
+  .demos{margin-top:2.6rem;border-top:1px solid rgba(255,255,255,.2)}
+  .demo{display:grid;grid-template-columns:56px 1fr auto;gap:1.2rem;align-items:center;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,.2)}
+  .demo .pp{all:unset;cursor:pointer;width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .demo .pp:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+  .demo .pp::after{content:"";border-left:14px solid #000;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+  .demo .pp[aria-pressed=true]::after{border:0;width:14px;height:16px;margin:0;background:linear-gradient(90deg,#000 0 35%,transparent 35% 65%,#000 65%)}
+  .demo .pp:disabled{background:#333;cursor:not-allowed}
+  .demo h3{font-size:1.1rem}
+  .demo p{color:rgba(255,255,255,.6);font-size:.95rem}
+  .wave{display:flex;gap:3px;align-items:center;height:34px}
+  .wave i{width:3px;background:rgba(255,255,255,.35);border-radius:2px}
+  .demo.playing .wave i{background:var(--red)}
+  @media (max-width:640px){.demo{grid-template-columns:56px 1fr}.wave{display:none}}
+
   /* ============ BADGE FIXE : disponibilité + réseaux ============ */
   .dispo{position:fixed;z-index:19;left:max(12px,calc((100vw - 1160px)/2 - 72px));top:calc(var(--band) + 18px);display:flex;flex-direction:column;align-items:center;gap:.4rem;background:#fff;border:1.5px solid #000;border-radius:999px;padding:.55rem .4rem;box-shadow:0 10px 30px -12px rgba(0,0,0,.35)}
   .dispo-tag{display:flex;flex-direction:column;align-items:center;gap:.45rem;text-decoration:none;font-weight:700;font-size:.78rem;padding:.2rem 0 .45rem;border-bottom:1.5px solid #E2E2E2}
@@ -193,10 +242,11 @@
     <nav class="dial" aria-label="Navigation">
       <ol>
         <li><a href="#accueil"><b>88.8</b><span>Accueil</span></a></li>
-        <li><a href="#antenne"><b>92.4</b><span>Antenne</span></a></li>
-        <li><a href="#scene"><b>96.8</b><span>Scène</span></a></li>
-        <li><a href="#marques"><b>101.2</b><span>Marques</span></a></li>
-        <li><a href="#reserver"><b>105.6</b><span>Réserver</span></a></li>
+        <li><a href="#medias"><b>91.6</b><span>Médias</span></a></li>
+        <li><a href="#evenements"><b>95.2</b><span>Événements</span></a></li>
+        <li><a href="#collaborations"><b>99.4</b><span>Collabs</span></a></li>
+        <li><a href="#voix-off"><b>103.0</b><span>Voix off</span></a></li>
+        <li><a href="#reserver"><b>106.8</b><span>Réserver</span></a></li>
       </ol>
       <div class="needle" aria-hidden="true"></div>
     </nav>
@@ -223,7 +273,7 @@
         </ul>
         <div class="ctas">
           <a class="btn btn-lamp" href="#reserver">Réserver pour un événement</a>
-          <a class="btn btn-ghost" href="#marques">Proposer un partenariat</a>
+          <a class="btn btn-ghost" href="#collaborations">Proposer un partenariat</a>
         </div>
       </div>
       <div class="portrait" role="img" aria-label="Emplacement pour le portrait de Gaëtan">
@@ -233,11 +283,11 @@
     </div>
   </section>
 
-  <!-- ANTENNE -->
-  <section id="antenne" aria-labelledby="antenne-t">
+  <!-- MÉDIAS -->
+  <section id="medias" aria-labelledby="medias-t">
     <div class="wrap">
-      <h2 id="antenne-t">Sa grille des programmes</h2>
-      <p class="intro">Quinze ans de direct sur les radios belges. Voici les émissions qui ont fait sa voix.</p>
+      <h2 id="medias-t">Médias</h2>
+      <p class="intro">Radio, télé et réseaux : quinze ans de direct sur les ondes belges. Voici sa grille des programmes.</p>
 
       <div class="grille" role="list">
         <article class="show current" role="listitem">
@@ -267,13 +317,16 @@
         </article>
       </div>
       <p class="origin">Avant ça : une formation hôtelière à Spa, des études de journalisme à l'ISFSC et ses débuts sur Fun Radio en 2007.</p>
+
+      <div class="gal-head"><h3>Vu à l'écran</h3><p>Interviews, plateaux télé et passages dans les médias.</p></div>
+      <div class="reels" data-gallery="medias" role="list"></div>
     </div>
   </section>
 
-  <!-- SCÈNE -->
-  <section class="scene" id="scene" aria-labelledby="scene-t">
+  <!-- ÉVÉNEMENTS -->
+  <section class="scene" id="evenements" aria-labelledby="scene-t">
     <div class="wrap">
-      <h2 id="scene-t">Sur scène, pour votre événement</h2>
+      <h2 id="scene-t">Événements</h2>
       <p class="intro">Choisissez votre type d'événement pour voir ce que Gaëtan y apporte.</p>
 
       <div class="picker">
@@ -292,18 +345,22 @@
         </div>
       </div>
 
+
+      <div class="gal-head"><h3>En action</h3><p>Sur scène, au micro, au milieu du public.</p></div>
+      <div class="reels" data-gallery="evenements" role="list"></div>
+
       <p class="credits" aria-label="Il a présenté : Miss Belgique, le Marathon de Namur, les Radio Contact Shop Awards">
         Il a présenté <span>Miss Belgique</span>, le <span>Marathon de Namur</span>, les <span>Radio Contact Shop Awards</span>.
       </p>
     </div>
   </section>
 
-  <!-- MARQUES -->
-  <section class="marques" id="marques" aria-labelledby="marques-t">
+  <!-- COLLABORATIONS -->
+  <section class="marques" id="collaborations" aria-labelledby="marques-t">
     <div class="wrap">
       <div>
-        <h2 id="marques-t">Ambassadeur de marques</h2>
-        <p class="intro">Une audience qui le suit de la radio à Instagram, et une façon de parler des marques qui sonne vrai.</p>
+        <h2 id="marques-t">Collaborations</h2>
+        <p class="intro">Lifestyle, automobile, food, voyages : une audience qui le suit de la radio à Instagram, et une façon de parler des marques qui sonne vrai.</p>
         <div class="formats">
           <div class="format">
             <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="4" width="28" height="40" rx="6" fill="#000"/><circle cx="24" cy="24" r="7" fill="#E5322D"/></svg>
@@ -321,10 +378,37 @@
       </div>
       <aside class="pink">
         <h3>Ambassadeur de Think Pink</h3>
-        <p>Gaëtan s'engage aux côtés de Think Pink dans la lutte contre le cancer du sein.</p>
-        <p>Il défend aussi la cause animale, un sujet qui lui tient à cœur.</p>
+        <p>Gaëtan s'engage aux côtés de Think Pink dans la lutte contre le cancer du sein, et il est parrain de Clinicoeur.</p>
+        <p>Il privilégie les collaborations qui ont du sens pour sa communauté.</p>
         <a class="btn" href="#reserver" data-type="Partenariat de marque">Proposer un partenariat</a>
       </aside>
+    </div>
+    <div class="wrap wrap-stack">
+      <ul class="partners" aria-label="Partenaires">
+        <li><span>Louyet &amp; Lotus</span><small>Ambassadeur automobile</small></li>
+        <li><span>Think Pink</span><small>Ambassadeur</small></li>
+        <li><span>Clinicoeur</span><small>Parrain</small></li>
+        <li><span>Miss Belgique</span><small>Présentateur</small></li>
+      </ul>
+      <div class="gal-head"><h3>Contenus de marque</h3><p>Quelques collaborations publiées sur ses réseaux.</p></div>
+      <div class="reels" data-gallery="collaborations" role="list"></div>
+    </div>
+  </section>
+
+  <!-- VOIX OFF -->
+  <section class="voix" id="voix-off" aria-labelledby="voix-t">
+    <div class="wrap">
+      <div class="voix-top">
+        <div>
+          <h2 id="voix-t">Voix off</h2>
+          <p class="intro">Une voix que la Belgique francophone entend chaque matin. Chaleureuse, rythmée, reconnaissable.</p>
+        </div>
+        <a class="btn btn-lamp" href="#reserver" data-type="Voix / spot radio">Demander une voix off</a>
+      </div>
+      <ul class="usages">
+        <li>Spots radio et pubs</li><li>Habillage d'antenne et jingles</li><li>Vidéos d'entreprise</li><li>Podcasts et narration</li><li>Annonces d'événements</li>
+      </ul>
+      <div class="demos" data-demos role="list"></div>
     </div>
   </section>
 
@@ -455,6 +539,78 @@
     document.querySelector(`input[value="${a.dataset.type}"]`).checked = true;
   }));
   document.querySelector('.hero .btn-ghost').addEventListener('click', () => { document.getElementById('c2').checked = true; });
+})();
+
+
+/* ---------- 4. Vidéos et démos : il suffit d'ajouter des liens ici ----------
+   type : "tiktok", "instagram" ou "youtube" ; id : l'identifiant dans l'URL
+   (tiktok.com/@compte/video/ID · instagram.com/reel/ID · youtube.com/watch?v=ID)
+   page : lien complet, utile si la vidéo vient d'un autre compte que @gaetanbartosz */
+const MEDIA = {
+  medias: [
+    {type:"tiktok", id:"7242252330190589210", page:"https://www.tiktok.com/@cacommenceauj/video/7242252330190589210", title:"Invité de « Ça commence aujourd'hui »", note:"France 2 · retour sur l'élection de Miss Belgique"}
+  ],
+  evenements: [
+    {type:"tiktok", id:"7138307627976576262", page:"https://www.tiktok.com/@deejay.max/video/7138307627976576262", title:"Spa-Francorchamps", note:"Tribune 17/27 · Grand Prix de Belgique de F1"}
+  ],
+  collaborations: []
+};
+// Démos voix off : ajouter le fichier audio (ex. "audio/spot-radio.mp3") dans src
+const DEMOS = [
+  {title:"Spot radio", note:"Publicité 30 secondes", src:""},
+  {title:"Habillage d'événement", note:"Annonces et lancements de soirée", src:""},
+  {title:"Narration", note:"Vidéo d'entreprise ou podcast", src:""}
+];
+
+(() => {
+  const label = {tiktok:"TikTok", instagram:"Instagram", youtube:"YouTube"};
+  const embed = v => ({
+    tiktok:`https://www.tiktok.com/embed/v2/${v.id}`,
+    instagram:`https://www.instagram.com/reel/${v.id}/embed`,
+    youtube:`https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1`
+  })[v.type];
+  const page = v => ({
+    tiktok:`https://www.tiktok.com/@gaetanbartosz/video/${v.id}`,
+    instagram:`https://www.instagram.com/reel/${v.id}/`,
+    youtube:`https://www.youtube.com/watch?v=${v.id}`
+  })[v.type];
+  document.querySelectorAll('[data-gallery]').forEach(row => {
+    const list = MEDIA[row.dataset.gallery] || [];
+    const items = list.map(v => {
+      const li = document.createElement('div'); li.className = 'reel'; li.setAttribute('role','listitem');
+      li.innerHTML = `<button type="button" aria-label="Lire la vidéo : ${v.title}"><span class="src">${label[v.type]}</span><span class="play" aria-hidden="true"></span><b>${v.title}</b><small>${v.note || ''}</small></button>`;
+      li.querySelector('button').addEventListener('click', () => {
+        li.innerHTML = `<iframe src="${embed(v)}" title="${v.title}" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe><a class="reel-link" href="${v.page || page(v)}" target="_blank" rel="noopener">Ouvrir sur ${label[v.type]}</a>`;
+      });
+      return li;
+    });
+    // Emplacements libres pour arriver à 3 vidéos minimum
+    while (items.length < 3) {
+      const e = document.createElement('div'); e.className = 'reel empty'; e.setAttribute('role','listitem');
+      e.textContent = 'Vidéo à venir'; items.push(e);
+    }
+    row.replaceChildren(...items);
+  });
+
+  // Démos audio
+  const box = document.querySelector('[data-demos]');
+  let current = null;
+  DEMOS.forEach((d, i) => {
+    const row = document.createElement('div'); row.className = 'demo'; row.setAttribute('role','listitem');
+    const bars = Array.from({length:42}, (_, k) => `<i style="height:${8 + Math.round(26*Math.abs(Math.sin(k*1.7+i)))}px"></i>`).join('');
+    row.innerHTML = `<button class="pp" type="button" aria-pressed="false" aria-label="Écouter : ${d.title}" ${d.src ? '' : 'disabled'}></button>
+      <div><h3>${d.title}</h3><p>${d.src ? d.note : d.note + ' · démo à venir'}</p></div><div class="wave" aria-hidden="true">${bars}</div>`;
+    if (d.src) {
+      const audio = new Audio(d.src); const btn = row.querySelector('.pp');
+      btn.addEventListener('click', () => {
+        if (current && current !== audio) current.pause();
+        if (audio.paused) { audio.play(); current = audio; } else audio.pause();
+      });
+      audio.addEventListener('play', () => { btn.setAttribute('aria-pressed','true'); row.classList.add('playing'); });
+      audio.addEventListener('pause', () => { btn.setAttribute('aria-pressed','false'); row.classList.remove('playing'); });
+    }
+    box.appendChild(row);
+  });
 })();
 
 /* ---------- 3. Formulaire : ouvre la messagerie (remplacer l'adresse) ---------- */
