@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Maquette : retirer cette balise une fois le site validé par Gaëtan -->
+<meta name="robots" content="noindex, nofollow">
+<title>Gaëtan Bartosz — Animateur radio, présentateur, ambassadeur</title>
+<meta name="description" content="Animateur radio belge, présentateur d'événements et ambassadeur de marques. Réservez Gaëtan Bartosz pour votre gala, votre élection, votre course ou votre lancement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,300..900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --studio:#1B1745;
+    --studio-2:#252060;
+    --lamp:#FFC83D;
+    --pink:#F7B6C9;
+    --paper:#F6F4FF;
+    --ink:#141130;
+    --muted:#6B6790;
+    --display:"Anybody", system-ui, sans-serif;
+    --text:"Instrument Sans", system-ui, sans-serif;
+    --step-0:1.0625rem;
+    --step-1:1.33rem;
+    --step-2:1.77rem;
+    --step-3:2.6rem;
+    --wrap:min(1180px, 100% - 3rem);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+  body{font-family:var(--text);font-size:var(--step-0);line-height:1.6;color:var(--ink);background:var(--paper)}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--lamp);outline-offset:3px;border-radius:4px}
+  .wrap{width:var(--wrap);margin-inline:auto}
+
+  /* ---------- Navigation ---------- */
+  .nav{position:absolute;inset:0 0 auto 0;z-index:5;color:var(--paper)}
+  .nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:1.4rem}
+  .brand{font-family:var(--display);font-weight:800;font-stretch:120%;text-decoration:none;font-size:1.1rem}
+  .nav ul{display:flex;gap:1.6rem;list-style:none}
+  .nav a.link{text-decoration:none;opacity:.85}
+  .nav a.link:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+  .nav .book{background:var(--lamp);color:var(--ink);padding:.55rem 1rem;border-radius:999px;font-weight:600;text-decoration:none}
+  @media (max-width:760px){.nav ul li:not(:last-child){display:none}}
+
+  /* ---------- Hero / tuner ---------- */
+  .hero{background:var(--studio);color:var(--paper);min-height:100svh;display:grid;align-content:center;padding-block:7rem 4rem;position:relative;overflow:hidden}
+  .onair{display:inline-flex;align-items:center;gap:.6rem;font-weight:600;font-size:.95rem;color:var(--lamp)}
+  .onair i{width:.7rem;height:.7rem;border-radius:50%;background:var(--lamp);box-shadow:0 0 0 0 rgba(255,200,61,.6);animation:pulse 2.2s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 12px rgba(255,200,61,0)}100%{box-shadow:0 0 0 0 rgba(255,200,61,0)}}
+  .name{font-family:var(--display);font-weight:900;line-height:.86;letter-spacing:-.01em;
+        font-size:clamp(3.4rem, 13vw, 11.5rem);font-stretch:var(--stretch,100%);margin-block:1rem 2.4rem;transition:font-stretch .25s ease}
+  .name span{display:block}
+  .name span:last-child{color:var(--lamp)}
+
+  .tuner{background:var(--studio-2);border-radius:20px;padding:1.4rem 1.6rem 1.6rem;max-width:880px}
+  .scale{position:relative;height:56px}
+  .ticks{position:absolute;inset:0;background:
+      repeating-linear-gradient(90deg, rgba(246,244,255,.55) 0 1px, transparent 1px 2%) bottom/100% 18px no-repeat,
+      repeating-linear-gradient(90deg, rgba(246,244,255,.9) 0 2px, transparent 2px 10%) bottom/100% 30px no-repeat}
+  .freqs{position:absolute;inset:0 0 auto 0;display:flex;justify-content:space-between;font-size:.8rem;color:rgba(246,244,255,.65);font-variant-numeric:tabular-nums}
+  .needle{position:absolute;bottom:0;width:3px;height:52px;background:var(--lamp);left:var(--pos,10%);transform:translateX(-50%);transition:left .35s cubic-bezier(.3,1.4,.5,1);border-radius:2px}
+  .tuner input[type=range]{position:absolute;inset:0;width:100%;opacity:0;cursor:ew-resize}
+  .tuner input[type=range]:focus-visible + .needle{box-shadow:0 0 0 4px rgba(255,200,61,.45)}
+  .stations{display:flex;gap:.5rem;margin-top:1.1rem;flex-wrap:wrap}
+  .stations button{font:inherit;font-weight:600;background:transparent;color:var(--paper);border:1.5px solid rgba(246,244,255,.35);border-radius:999px;padding:.45rem 1rem;cursor:pointer}
+  .stations button[aria-pressed=true]{background:var(--lamp);border-color:var(--lamp);color:var(--ink)}
+  .readout{margin-top:1.3rem;min-height:6.5rem}
+  .readout .freq{font-family:var(--display);font-weight:700;font-stretch:130%;color:var(--pink);font-size:var(--step-1)}
+  .readout p{max-width:60ch;color:rgba(246,244,255,.88);margin-top:.3rem}
+  .hint{font-size:.85rem;color:rgba(246,244,255,.55);margin-top:.8rem}
+
+  /* ---------- Sections ---------- */
+  section{padding-block:clamp(4rem,9vw,7.5rem)}
+  h2{font-family:var(--display);font-weight:800;font-stretch:115%;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1;margin-bottom:1.2rem;letter-spacing:-.01em}
+  .lede{font-size:var(--step-1);max-width:46ch;color:var(--muted)}
+
+  /* À propos */
+  .about .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,6vw,5rem);align-items:center}
+  .about p+p{margin-top:1rem}
+  .about .body{max-width:62ch}
+  .photo{aspect-ratio:4/5;border-radius:24px;background:
+     radial-gradient(circle at 30% 25%, var(--pink) 0 22%, transparent 23%),
+     var(--studio);display:grid;place-items:end start;padding:1.2rem;color:var(--paper);font-size:.9rem}
+  .photo.wide{aspect-ratio:16/10}
+  @media (max-width:860px){.about .wrap{grid-template-columns:1fr}}
+
+  /* Parcours (vraie chronologie) */
+  .timeline{background:var(--studio);color:var(--paper)}
+  .timeline .lede{color:rgba(246,244,255,.7)}
+  .tl{list-style:none;margin-top:3rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:2px solid rgba(246,244,255,.25)}
+  .tl li{padding:1.6rem 1.4rem 0 0;position:relative}
+  .tl li::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--lamp)}
+  .tl .year{font-family:var(--display);font-weight:800;font-stretch:130%;font-size:var(--step-2);color:var(--lamp);display:block}
+  .tl h3{font-size:1.05rem;margin-block:.3rem}
+  .tl p{color:rgba(246,244,255,.75);font-size:.97rem}
+
+  /* Événements */
+  .events .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2.5rem 3rem;margin-top:3rem}
+  .events h3{font-family:var(--display);font-weight:700;font-stretch:110%;font-size:var(--step-1);padding-top:.9rem;border-top:3px solid var(--ink);margin-bottom:.4rem}
+  .events p{color:var(--muted)}
+  .refs{margin-top:3.5rem;display:flex;flex-wrap:wrap;gap:.6rem}
+  .refs span{background:var(--ink);color:var(--paper);padding:.5rem 1rem;border-radius:999px;font-weight:500;font-size:.95rem}
+
+  /* Marques & causes */
+  .brands{background:var(--pink)}
+  .brands .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem)}
+  .brands .lede{color:var(--ink);opacity:.8}
+  .brands ul{list-style:none;margin-top:1.6rem}
+  .brands li{padding:1rem 0;border-bottom:1.5px solid rgba(20,17,48,.2)}
+  .brands li strong{display:block;font-size:1.1rem}
+  .cause{background:var(--ink);color:var(--paper);border-radius:24px;padding:clamp(1.6rem,4vw,2.6rem);align-self:start}
+  .cause h3{font-family:var(--display);font-weight:800;font-stretch:120%;font-size:var(--step-2);color:var(--pink);line-height:1.1;margin-bottom:.8rem}
+  .cause p+p{margin-top:.8rem}
+  @media (max-width:860px){.brands .wrap{grid-template-columns:1fr}}
+
+  /* Contact */
+  .contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,6vw,5rem)}
+  form{display:grid;gap:1rem}
+  label{font-weight:600;font-size:.95rem;display:grid;gap:.35rem}
+  input,select,textarea{font:inherit;padding:.8rem .9rem;border:1.5px solid #C9C5E6;border-radius:12px;background:#fff;color:var(--ink)}
+  textarea{min-height:140px;resize:vertical}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .send{justify-self:start;font:inherit;font-weight:600;background:var(--studio);color:var(--paper);border:0;border-radius:999px;padding:.9rem 1.6rem;cursor:pointer}
+  .send:hover{background:var(--studio-2)}
+  .status{font-size:.95rem;color:var(--muted)}
+  .socials{list-style:none;margin-top:2rem;display:grid;gap:.5rem}
+  .socials a{font-weight:600}
+  @media (max-width:860px){.contact .wrap,.row{grid-template-columns:1fr}}
+
+  footer{background:var(--studio);color:rgba(246,244,255,.7);padding-block:2rem;font-size:.9rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Gaëtan Bartosz</a>
+    <nav aria-label="Navigation principale">
+      <ul>
+        <li><a class="link" href="#parcours">Parcours</a></li>
+        <li><a class="link" href="#evenements">Événements</a></li>
+        <li><a class="link" href="#marques">Marques</a></li>
+        <li><a class="book" href="#contact">Réserver Gaëtan</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO : cadran FM -->
+  <section class="hero" aria-labelledby="nom">
+    <div class="wrap">
+      <span class="onair"><i aria-hidden="true"></i>À l'antenne depuis ses 13 ans</span>
+      <h1 class="name" id="nom"><span>Gaëtan</span><span>Bartosz</span></h1>
+
+      <div class="tuner">
+        <div class="scale">
+          <div class="freqs" aria-hidden="true"><span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span></div>
+          <div class="ticks" aria-hidden="true"></div>
+          <input id="dial" type="range" min="0" max="2" step="1" value="0" aria-label="Choisir un métier : Antenne, Scène ou Marques" aria-valuetext="Antenne">
+          <div class="needle" aria-hidden="true"></div>
+        </div>
+        <div class="stations" role="group" aria-label="Métiers">
+          <button type="button" data-i="0" aria-pressed="true">Antenne</button>
+          <button type="button" data-i="1" aria-pressed="false">Scène</button>
+          <button type="button" data-i="2" aria-pressed="false">Marques</button>
+        </div>
+        <div class="readout" aria-live="polite">
+          <div class="freq" id="freq">90.1 FM · Antenne</div>
+          <p id="desc">Treize saisons sur Radio Contact, puis la matinale de Tipik. Une voix qui réveille la Belgique francophone avec bonne humeur et belgitude.</p>
+        </div>
+        <p class="hint">Glissez l'aiguille ou utilisez les flèches du clavier pour changer de fréquence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="about" aria-labelledby="apropos">
+    <div class="wrap">
+      <div class="body">
+        <h2 id="apropos">La radio, son média de toujours</h2>
+        <p class="lede">Gaëtan est tombé dans le micro à 13 ans. Il n'en est jamais vraiment ressorti.</p>
+        <p>Passé par une formation hôtelière à Spa puis par le journalisme à l'ISFSC, il fait ses débuts sur Fun Radio avant de rejoindre Radio Contact en 2010. Il y anime le 10h–13h, « Les numéros 1 » aux côtés de Mademoiselle Luna, « La Playlist de Tonton », et devient même le « Good Morning Man », un super-héros du matin au service des bonnes causes.</p>
+        <p>Depuis 2023, il réveille les auditeurs de Tipik. Sur scène, il présente l'élection de Miss Belgique et anime de grands rendez-vous populaires, comme le Marathon de Namur.</p>
+      </div>
+      <div class="photo" role="img" aria-label="Emplacement photo portrait de Gaëtan">Portrait studio à venir</div>
+    </div>
+  </section>
+
+  <!-- PARCOURS -->
+  <section class="timeline" id="parcours" aria-labelledby="parcours-t">
+    <div class="wrap">
+      <h2 id="parcours-t">Parcours</h2>
+      <p class="lede">De la radio locale aux grandes scènes belges.</p>
+      <ol class="tl">
+        <li><span class="year">13 ans</span><h3>Premier micro</h3><p>Il découvre la radio et ne la lâche plus.</p></li>
+        <li><span class="year">2007</span><h3>Fun Radio</h3><p>Premières émissions sur une antenne nationale.</p></li>
+        <li><span class="year">2010</span><h3>Radio Contact</h3><p>Treize ans d'antenne : 10h–13h, Les numéros 1, La Playlist de Tonton, Shop Awards.</p></li>
+        <li><span class="year">2021</span><h3>Miss Belgique</h3><p>Présentateur francophone de l'élection, saison après saison.</p></li>
+        <li><span class="year">2023</span><h3>Tipik</h3><p>La matinale de Tipik (RTBF), un nouveau chapitre.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ÉVÉNEMENTS -->
+  <section class="events" id="evenements" aria-labelledby="ev-t">
+    <div class="wrap">
+      <h2 id="ev-t">Présentateur d'événements</h2>
+      <p class="lede">Il tient une salle comme il tient une antenne : rythme, spontanéité et zéro temps mort.</p>
+      <div class="grid">
+        <div><h3>Élections et shows</h3><p>Concours, cérémonies, remises de prix. Il connaît la mécanique du direct et sait mettre les candidats à l'aise.</p></div>
+        <div><h3>Sport et grand public</h3><p>Marathons, courses, fêtes de village : il fait vivre l'événement pour les participants comme pour le public.</p></div>
+        <div><h3>Entreprises</h3><p>Soirées clients, séminaires, lancements de produit. Un ton chaleureux qui reste professionnel.</p></div>
+        <div><h3>Galas et causes</h3><p>Soirées caritatives et levées de fonds, avec l'émotion juste et le sens du timing.</p></div>
+      </div>
+      <div class="refs" aria-label="Références">
+        <span>Miss Belgique</span><span>Marathon de Namur</span><span>Radio Contact Shop Awards</span><span>Good Morning Man</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUES -->
+  <section class="brands" id="marques" aria-labelledby="mq-t">
+    <div class="wrap">
+      <div>
+        <h2 id="mq-t">Ambassadeur de marques</h2>
+        <p class="lede">Une communauté fidèle qui le suit de la radio à Instagram, et une parole authentique.</p>
+        <ul>
+          <li><strong>Contenus Instagram et TikTok</strong>Reels, stories et posts écrits avec sa voix, pas avec un script.</li>
+          <li><strong>Présence événementielle</strong>Lancements, inaugurations, salons : il incarne la marque sur place.</li>
+          <li><strong>Voix et spots</strong>Une voix connue des auditeurs belges pour vos publicités et podcasts.</li>
+        </ul>
+      </div>
+      <aside class="cause">
+        <h3>Ambassadeur de Think Pink</h3>
+        <p>Gaëtan s'engage aux côtés de Think Pink dans la lutte contre le cancer du sein.</p>
+        <p>Il défend aussi la cause animale et le bien-être des animaux.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" aria-labelledby="ct-t">
+    <div class="wrap">
+      <div>
+        <h2 id="ct-t">Réserver Gaëtan</h2>
+        <p class="lede">Racontez votre projet : date, lieu, public. Réponse sous 48 heures.</p>
+        <ul class="socials">
+          <li><a href="https://www.instagram.com/gaetanbartosz" rel="noopener">Instagram @gaetanbartosz</a></li>
+          <li><a href="https://www.tiktok.com/@gaetanbartosz" rel="noopener">TikTok @gaetanbartosz</a></li>
+        </ul>
+      </div>
+      <form id="booking" novalidate>
+        <div class="row">
+          <label>Nom<input name="nom" required autocomplete="name"></label>
+          <label>E-mail<input name="email" type="email" required autocomplete="email"></label>
+        </div>
+        <div class="row">
+          <label>Type de demande
+            <select name="type">
+              <option>Présentation d'événement</option>
+              <option>Partenariat de marque</option>
+              <option>Voix / spot radio</option>
+              <option>Presse / interview</option>
+            </select>
+          </label>
+          <label>Date de l'événement<input name="date" type="date"></label>
+        </div>
+        <label>Votre projet<textarea name="message" required></textarea></label>
+        <button class="send" type="submit">Envoyer la demande</button>
+        <p class="status" id="status" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="y"></span> Gaëtan Bartosz</span>
+    <span>Design &amp; développement : Cris</span>
+  </div>
+</footer>
+
+<script>
+  // ---- Cadran FM ----
+  const stations = [
+    {f:"90.1 FM · Antenne", s:"95%",  p:"12%", d:"Treize saisons sur Radio Contact, puis la matinale de Tipik. Une voix qui réveille la Belgique francophone avec bonne humeur et belgitude."},
+    {f:"98.4 FM · Scène",   s:"125%", p:"52%", d:"Miss Belgique, Marathon de Namur, galas et soirées d'entreprise : il présente vos événements avec le rythme du direct."},
+    {f:"105.7 FM · Marques",s:"150%", p:"88%", d:"Ambassadeur de Think Pink et partenaire de marques : une parole authentique, de l'antenne jusqu'à Instagram."}
+  ];
+  const dial = document.getElementById('dial');
+  const scale = document.querySelector('.scale');
+  const name = document.querySelector('.name');
+  const btns = document.querySelectorAll('.stations button');
+  const freq = document.getElementById('freq'), desc = document.getElementById('desc');
+  const labels = ["Antenne","Scène","Marques"];
+  function tune(i){
+    const st = stations[i];
+    dial.value = i;
+    dial.setAttribute('aria-valuetext', labels[i]);
+    scale.style.setProperty('--pos', st.p);
+    name.style.setProperty('--stretch', st.s);
+    freq.textContent = st.f; desc.textContent = st.d;
+    btns.forEach((b,k)=>b.setAttribute('aria-pressed', k==i));
+  }
+  dial.addEventListener('input', e=>tune(+e.target.value));
+  btns.forEach(b=>b.addEventListener('click', ()=>tune(+b.dataset.i)));
+  tune(0);
+
+  // ---- Formulaire : ouvre le client mail (remplacer l'adresse par la vraie) ----
+  const BOOKING_EMAIL = "booking@exemple.be";
+  document.getElementById('booking').addEventListener('submit', e=>{
+    e.preventDefault();
+    const f = e.target, st = document.getElementById('status');
+    if(!f.nom.value || !f.email.value || !f.message.value){
+      st.textContent = "Ajoutez votre nom, votre e-mail et quelques mots sur votre projet.";
+      return;
+    }
+    const body = `${f.message.value}\n\nType : ${f.type.value}\nDate : ${f.date.value || "à définir"}\n${f.nom.value} — ${f.email.value}`;
+    location.href = `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent("Demande : "+f.type.value)}&body=${encodeURIComponent(body)}`;
+    st.textContent = "Votre messagerie s'ouvre avec la demande prête à envoyer.";
+  });
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
