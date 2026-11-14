@@ -250,6 +250,8 @@
   .ev-empty a{color:#000;font-weight:600}
   @media (max-width:860px){.ag-grid{grid-template-columns:minmax(0,1fr)}.cal-head h3{font-size:1.5rem}}
 
+  .mail-direct{margin-top:1rem;font-weight:500}
+  .mail-direct a{font-weight:700;color:#000}
   /* Lien vers le direct Tipik */
   .live-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
   .live-link{display:inline-flex;align-items:center;gap:.45rem;background:#000;color:#fff;text-decoration:none;font-weight:700;font-size:.92rem;padding:.4rem .95rem;border-radius:999px}
@@ -509,6 +511,7 @@
       <div>
         <h2 id="book-t">Réserver Gaëtan</h2>
         <p class="intro">Trois infos suffisent pour commencer.</p>
+        <p class="mail-direct">Ou écrivez directement à <a href="mailto:Gaetan@onofflab.be">Gaetan@onofflab.be</a></p>
         <ol class="steps">
           <li>Vous décrivez votre projet.</li>
           <li>Gaëtan vous répond sous 48 heures.</li>
@@ -549,6 +552,7 @@
       <a href="https://www.tiktok.com/@gaetanbartosz" rel="noopener" target="_blank">TikTok</a>
       <a href="https://www.facebook.com/GaetanBartoszFanpage" rel="noopener" target="_blank">Facebook</a>
     </nav>
+    <a href="mailto:Gaetan@onofflab.be">Gaetan@onofflab.be</a>
     <span>Design &amp; développement : Cris</span>
   </div>
 </footer>
@@ -810,7 +814,7 @@ const AGENDA = [
 
 /* ---------- 3. Formulaire : ouvre la messagerie (remplacer l'adresse) ---------- */
 (() => {
-  const BOOKING_EMAIL = "booking@exemple.be";
+  const BOOKING_EMAIL = "Gaetan@onofflab.be";
   const f = document.getElementById('booking'), st = document.getElementById('status');
   f.addEventListener('submit', e => {
     e.preventDefault();

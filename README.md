@@ -7,7 +7,7 @@ Un seul fichier `index.html` (HTML + CSS + JS), sans build. Déployable tel quel
 - [ ] Faire valider le contenu par Gaëtan (poste actuel, références, partenaires)
 - [ ] Remplacer `logo.svg` et le `<symbol id="logo">` de index.html par le logo original en SVG (version actuelle redessinée depuis une capture, Z reconstruit)
 - [ ] Remplacer les emplacements photo par de vraies photos (portrait studio)
-- [ ] Remplacer `BOOKING_EMAIL` dans le script par la vraie adresse de booking
+- [x] Adresse de réservation : Gaetan@onofflab.be
 - [ ] Ajouter ses partenariats de marques réels (section Marques)
 - [ ] Retirer la balise `<meta name="robots" content="noindex, nofollow">`
 - [ ] Ajouter un nom de domaine
