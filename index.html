@@ -250,6 +250,16 @@
   .ev-empty a{color:#000;font-weight:600}
   @media (max-width:860px){.ag-grid{grid-template-columns:minmax(0,1fr)}.cal-head h3{font-size:1.5rem}}
 
+  /* Lien vers le direct Tipik */
+  .live-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
+  .live-link{display:inline-flex;align-items:center;gap:.45rem;background:#000;color:#fff;text-decoration:none;font-weight:700;font-size:.92rem;padding:.4rem .95rem;border-radius:999px}
+  .live-link:hover{background:#333}
+  .live-link .ext{font-size:.85rem}
+  .live-link.on-air{background:var(--red)}
+  .live-link.on-air:hover{background:#c92a25}
+  .live-link.on-air::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.2s infinite}
+  @keyframes blink{50%{opacity:.25}}
+
   /* ============ BADGE FIXE : disponibilité + réseaux ============ */
   .dispo{position:fixed;z-index:19;left:max(12px,calc((100vw - 1160px)/2 - 72px));top:calc(var(--band) + 18px);display:flex;flex-direction:column;align-items:center;gap:.4rem;background:#fff;border:1.5px solid #000;border-radius:999px;padding:.55rem .4rem;box-shadow:0 10px 30px -12px rgba(0,0,0,.35)}
   .dispo-tag{display:flex;flex-direction:column;align-items:center;gap:.45rem;text-decoration:none;font-weight:700;font-size:.78rem;padding:.2rem 0 .45rem;border-bottom:1.5px solid #E2E2E2}
@@ -308,7 +318,10 @@
   <section class="hero" id="accueil" aria-labelledby="nom">
     <div class="wrap">
       <div class="hero-top">
-        <span class="live"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Le Réveil de Tipik, 6h–9h · 88.8 FM</span>
+        <div class="live-row">
+          <span class="live"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Le Réveil de Tipik, 6h–9h · 88.8 FM</span>
+          <a class="live-link" id="live-link" href="https://www.rtbf.be/radio/liveradio/tipik" target="_blank" rel="noopener"><span id="live-link-txt">Écouter Tipik en direct</span><span aria-hidden="true" class="ext">↗</span><span class="sr"> (site de la RTBF, nouvel onglet)</span></a>
+        </div>
         <h1 id="nom"><span class="sr">Gaëtan Bartosz</span><svg class="logo-hero" viewBox="0 0 797.83 173.50" aria-hidden="true" focusable="false"><use href="#logo"/></svg></h1>
       </div>
       <div>
@@ -779,6 +792,20 @@ const AGENDA = [
   prev.addEventListener('click', () => { view.setMonth(view.getMonth()-1); render(); });
   next.addEventListener('click', () => { view.setMonth(view.getMonth()+1); render(); });
   render();
+})();
+
+
+/* ---------- 6. Bouton vers le direct Tipik : passe au rouge pendant l'émission ---------- */
+(() => {
+  const a = document.getElementById('live-link'), t = document.getElementById('live-link-txt');
+  function refresh(){
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Brussels', weekday:'short', hour:'2-digit', hour12:false})
+      .formatToParts(new Date()).map(x => [x.type, x.value]));
+    const h = parseInt(p.hour, 10) % 24, live = !['Sat','Sun'].includes(p.weekday) && h >= 6 && h < 9;
+    a.classList.toggle('on-air', live);
+    t.textContent = live ? 'En direct maintenant · Écouter' : 'Écouter Tipik en direct';
+  }
+  refresh(); setInterval(refresh, 60000);
 })();
 
 /* ---------- 3. Formulaire : ouvre la messagerie (remplacer l'adresse) ---------- */
