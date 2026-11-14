@@ -205,6 +205,51 @@
   .demo.playing .wave i{background:var(--red)}
   @media (max-width:640px){.demo{grid-template-columns:56px 1fr}.wave{display:none}}
 
+  /* ============ AGENDA ============ */
+  .agenda{background:#F1F1F1}
+  .recurrent{margin-top:1.4rem;display:flex;gap:.6rem;align-items:center;font-weight:500}
+  .dot-red{width:10px;height:10px;border-radius:50%;background:var(--red);flex:none}
+  .ag-grid{margin-top:2.6rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+  .cal{background:#fff;border-radius:20px;padding:clamp(1rem,3vw,1.6rem);box-shadow:0 30px 60px -40px rgba(0,0,0,.35)}
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+  .cal-head h3{font-family:var(--display);font-weight:800;font-stretch:55%;text-transform:uppercase;font-size:2rem;line-height:1}
+  .cal-nav{font:inherit;font-size:1.6rem;line-height:1;width:44px;height:44px;border-radius:50%;border:1.5px solid #000;background:#fff;cursor:pointer}
+  .cal-nav:hover{background:#000;color:#fff}
+  .cal-nav:disabled{opacity:.25;cursor:default;background:#fff;color:#000}
+  .cal-days,.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .cal-days span{text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);padding-bottom:.3rem}
+  .day{font:inherit;aspect-ratio:1;border-radius:10px;border:0;background:transparent;display:grid;place-items:center;position:relative;font-weight:600;font-variant-numeric:tabular-nums}
+  .day.free{background:#fff;border:1.5px solid #DADADA;cursor:pointer}
+  .day.free::after{content:"";position:absolute;bottom:5px;width:5px;height:5px;border-radius:50%;background:#1DB954}
+  .day.free:hover{border-color:#000}
+  .day.event{background:#000;color:#fff;cursor:pointer}
+  .day.event::after{content:"";position:absolute;bottom:5px;width:5px;height:5px;border-radius:50%;background:var(--red)}
+  .day.busy{background:repeating-linear-gradient(135deg,#E4E4E4 0 4px,#F4F4F4 4px 8px);color:#9A9A9A}
+  .day.past{color:#C4C4C4}
+  .day.today{outline:2px solid var(--red);outline-offset:1px}
+  .day.picked{background:#1DB954;border-color:#1DB954;color:#fff}
+  .legend{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin-top:1.1rem;font-size:.9rem}
+  .legend li{display:flex;align-items:center;gap:.45rem}
+  .legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
+  .lg-free{border:1.5px solid #DADADA;background:#fff;position:relative}
+  .lg-free::after{content:"";position:absolute;left:4px;top:4px;width:4px;height:4px;border-radius:50%;background:#1DB954}
+  .lg-event{background:#000}
+  .lg-busy{background:repeating-linear-gradient(135deg,#D6D6D6 0 3px,#F4F4F4 3px 6px)}
+  .cal-hint{font-size:.9rem;color:var(--muted);margin-top:.6rem}
+  .dates h3{font-family:var(--display);font-weight:800;font-stretch:55%;text-transform:uppercase;font-size:2rem;line-height:1;padding-bottom:.9rem;border-bottom:2px solid #000}
+  .dates ol{list-style:none}
+  .ev{display:grid;grid-template-columns:4.2rem 1fr;gap:1.1rem;padding:1.1rem 0;border-bottom:1px solid #D6D6D6;scroll-margin-top:calc(var(--band) + 80px)}
+  .ev.flash{background:linear-gradient(90deg,rgba(229,50,45,.1),transparent 80%)}
+  .ev .d{font-family:var(--display);font-weight:800;font-stretch:55%;text-transform:uppercase;line-height:.9;text-align:center}
+  .ev .d b{display:block;font-size:2.6rem}
+  .ev .d small{font-size:1rem;color:var(--muted)}
+  .ev h4{font-size:1.1rem;line-height:1.3}
+  .ev p{color:var(--muted);font-size:.95rem;margin-top:.15rem}
+  .ev .tag{display:inline-block;margin-top:.45rem;font-size:.8rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;background:#000;color:#fff}
+  .ev-empty{padding:1.4rem 0;color:var(--muted)}
+  .ev-empty a{color:#000;font-weight:600}
+  @media (max-width:860px){.ag-grid{grid-template-columns:minmax(0,1fr)}.cal-head h3{font-size:1.5rem}}
+
   /* ============ BADGE FIXE : disponibilité + réseaux ============ */
   .dispo{position:fixed;z-index:19;left:max(12px,calc((100vw - 1160px)/2 - 72px));top:calc(var(--band) + 18px);display:flex;flex-direction:column;align-items:center;gap:.4rem;background:#fff;border:1.5px solid #000;border-radius:999px;padding:.55rem .4rem;box-shadow:0 10px 30px -12px rgba(0,0,0,.35)}
   .dispo-tag{display:flex;flex-direction:column;align-items:center;gap:.45rem;text-decoration:none;font-weight:700;font-size:.78rem;padding:.2rem 0 .45rem;border-bottom:1.5px solid #E2E2E2}
@@ -244,6 +289,7 @@
         <li><a href="#accueil"><b>88.8</b><span>Accueil</span></a></li>
         <li><a href="#medias"><b>91.6</b><span>Médias</span></a></li>
         <li><a href="#evenements"><b>95.2</b><span>Événements</span></a></li>
+        <li><a href="#agenda"><b>97.6</b><span>Agenda</span></a></li>
         <li><a href="#collaborations"><b>99.4</b><span>Collabs</span></a></li>
         <li><a href="#voix-off"><b>103.0</b><span>Voix off</span></a></li>
         <li><a href="#reserver"><b>106.8</b><span>Réserver</span></a></li>
@@ -352,6 +398,38 @@
       <p class="credits" aria-label="Il a présenté : Miss Belgique, le Marathon de Namur, les Radio Contact Shop Awards">
         Il a présenté <span>Miss Belgique</span>, le <span>Marathon de Namur</span>, les <span>Radio Contact Shop Awards</span>.
       </p>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="agenda" id="agenda" aria-labelledby="agenda-t">
+    <div class="wrap">
+      <h2 id="agenda-t">Agenda</h2>
+      <p class="intro">Où le voir, ce qu'il présente, et les jours où il est disponible pour votre événement.</p>
+      <p class="recurrent"><span class="dot-red" aria-hidden="true"></span>Chaque matin de semaine, de 6h à 9h, il est à l'antenne pour Le Réveil de Tipik.</p>
+
+      <div class="ag-grid">
+        <div class="cal" aria-labelledby="cal-title">
+          <div class="cal-head">
+            <button type="button" class="cal-nav" id="cal-prev" aria-label="Mois précédent">‹</button>
+            <h3 id="cal-title" aria-live="polite"></h3>
+            <button type="button" class="cal-nav" id="cal-next" aria-label="Mois suivant">›</button>
+          </div>
+          <div class="cal-days" aria-hidden="true"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+          <div class="cal-grid" id="cal-grid"></div>
+          <ul class="legend">
+            <li><i class="lg-free"></i>Disponible</li>
+            <li><i class="lg-event"></i>Événement</li>
+            <li><i class="lg-busy"></i>Indisponible</li>
+          </ul>
+          <p class="cal-hint">Touchez un jour disponible pour le réserver.</p>
+        </div>
+
+        <div class="dates">
+          <h3>Prochaines dates</h3>
+          <ol id="ag-list"></ol>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -611,6 +689,96 @@ const DEMOS = [
     }
     box.appendChild(row);
   });
+})();
+
+
+/* ---------- 5. Agenda : ajouter les dates ici ----------
+   date : "AAAA-MM-JJ" · fin : dernier jour si plusieurs jours (facultatif)
+   titre, lieu, heure, type ("Show", "Animation", "Présentation", "Radio", "Télé"...)
+   prive: true  → le jour apparaît seulement comme « indisponible », sans détails
+   Tous les autres jours à venir sont affichés comme disponibles. */
+const AGENDA = [
+  // {date:"2026-12-12", titre:"Gala de fin d'année", lieu:"Namur", heure:"20h", type:"Présentation"},
+  // {date:"2026-12-20", fin:"2026-12-21", prive:true},
+];
+
+(() => {
+  const pad = n => String(n).padStart(2,'0');
+  const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const parse = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); };
+  const mois = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+  const moisCourt = ['jan','fév','mars','avr','mai','juin','juil','août','sept','oct','nov','déc'];
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  // Index des jours occupés
+  const byDay = {};
+  AGENDA.forEach((e, i) => {
+    const start = parse(e.date), end = parse(e.fin || e.date);
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate()+1)) (byDay[iso(d)] ||= []).push(i);
+  });
+
+  // Liste des prochaines dates publiques
+  const list = document.getElementById('ag-list');
+  const upcoming = AGENDA.map((e, i) => ({...e, i})).filter(e => !e.prive && parse(e.fin || e.date) >= today)
+                         .sort((a, b) => a.date.localeCompare(b.date));
+  if (!upcoming.length) {
+    list.innerHTML = `<li class="ev-empty">Les prochaines dates arrivent bientôt. En attendant, <a href="#reserver">réservez Gaëtan</a> sur un jour disponible.</li>`;
+  } else {
+    list.innerHTML = upcoming.map(e => {
+      const d = parse(e.date);
+      const quand = [e.fin ? `jusqu'au ${parse(e.fin).getDate()} ${mois[parse(e.fin).getMonth()]}` : '', e.heure].filter(Boolean).join(' · ');
+      return `<li class="ev" id="ev-${e.i}"><div class="d"><b>${d.getDate()}</b><small>${moisCourt[d.getMonth()]}</small></div>
+        <div><h4>${e.titre || 'Événement'}</h4><p>${[e.lieu, quand].filter(Boolean).join(' · ')}</p>${e.type ? `<span class="tag">${e.type}</span>` : ''}</div></li>`;
+    }).join('');
+  }
+
+  // Calendrier
+  const grid = document.getElementById('cal-grid'), title = document.getElementById('cal-title');
+  const prev = document.getElementById('cal-prev'), next = document.getElementById('cal-next');
+  let view = new Date(today.getFullYear(), today.getMonth(), 1);
+
+  function pick(dateStr, btn){
+    grid.querySelectorAll('.picked').forEach(b => b.classList.remove('picked'));
+    btn.classList.add('picked');
+    const f = document.getElementById('booking');
+    f.date.value = dateStr;
+    document.getElementById('c1').checked = true;
+    document.getElementById('reserver').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+    setTimeout(() => f.nom.focus({preventScroll:true}), 600);
+  }
+
+  function render(){
+    title.textContent = `${mois[view.getMonth()]} ${view.getFullYear()}`;
+    prev.disabled = view <= new Date(today.getFullYear(), today.getMonth(), 1);
+    const first = (view.getDay() + 6) % 7;                 // lundi = 0
+    const days = new Date(view.getFullYear(), view.getMonth()+1, 0).getDate();
+    const cells = [];
+    for (let k = 0; k < first; k++) cells.push('<span></span>');
+    for (let n = 1; n <= days; n++) {
+      const d = new Date(view.getFullYear(), view.getMonth(), n), key = iso(d);
+      const ev = (byDay[key] || []).map(i => AGENDA[i]);
+      const label = `${n} ${mois[d.getMonth()]}`;
+      let cls = 'day', attrs = '', aria;
+      if (d < today) { cls += ' past'; aria = `${label}, passé`; attrs = 'disabled'; }
+      else if (ev.some(e => !e.prive)) { cls += ' event'; aria = `${label} : ${ev.filter(e=>!e.prive).map(e => e.titre || 'événement').join(', ')}`; attrs = `data-ev="${(byDay[key]||[]).find(i=>!AGENDA[i].prive)}"`; }
+      else if (ev.length) { cls += ' busy'; aria = `${label}, indisponible`; attrs = 'disabled'; }
+      else { cls += ' free'; aria = `${label}, disponible : réserver ce jour`; attrs = `data-date="${key}"`; }
+      if (+d === +today) cls += ' today';
+      cells.push(`<button type="button" class="${cls}" ${attrs} aria-label="${aria}">${n}</button>`);
+    }
+    grid.innerHTML = cells.join('');
+  }
+  grid.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.date) pick(b.dataset.date, b);
+    if (b.dataset.ev !== undefined) {
+      const li = document.getElementById('ev-' + b.dataset.ev);
+      if (li) { li.scrollIntoView({block:'nearest'}); li.classList.add('flash'); setTimeout(() => li.classList.remove('flash'), 1600); }
+    }
+  });
+  prev.addEventListener('click', () => { view.setMonth(view.getMonth()-1); render(); });
+  next.addEventListener('click', () => { view.setMonth(view.getMonth()+1); render(); });
+  render();
 })();
 
 /* ---------- 3. Formulaire : ouvre la messagerie (remplacer l'adresse) ---------- */
