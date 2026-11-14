@@ -156,11 +156,31 @@
   .status.err{color:#B3261E}
   @media (max-width:860px){.book .wrap,.row{grid-template-columns:1fr}}
 
+  /* ============ BADGE FIXE : disponibilité + réseaux ============ */
+  .dispo{position:fixed;z-index:19;left:max(12px,calc((100vw - 1160px)/2 - 72px));top:calc(var(--band) + 18px);display:flex;flex-direction:column;align-items:center;gap:.4rem;background:#fff;border:1.5px solid #000;border-radius:999px;padding:.55rem .4rem;box-shadow:0 10px 30px -12px rgba(0,0,0,.35)}
+  .dispo-tag{display:flex;flex-direction:column;align-items:center;gap:.45rem;text-decoration:none;font-weight:700;font-size:.78rem;padding:.2rem 0 .45rem;border-bottom:1.5px solid #E2E2E2}
+  .dispo-tag span{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.02em}
+  .dispo-tag i{width:10px;height:10px;border-radius:50%;background:#1DB954;box-shadow:0 0 0 0 rgba(29,185,84,.6);animation:dispo 2s infinite}
+  @keyframes dispo{70%{box-shadow:0 0 0 8px rgba(29,185,84,0)}100%{box-shadow:0 0 0 0 rgba(29,185,84,0)}}
+  .dispo-soc{display:flex;flex-direction:column;gap:.15rem}
+  .soc{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;color:#000}
+  .soc svg{width:20px;height:20px}
+  .soc:hover{background:#000;color:#fff}
+  @media (max-width:1339px){
+    .dispo{flex-direction:row;left:12px;top:calc(var(--band) + 10px);padding:.25rem .35rem .25rem .7rem;gap:.3rem}
+    .dispo-tag{flex-direction:row;padding:0 .55rem 0 0;border-bottom:0;border-right:1.5px solid #E2E2E2}
+    .dispo-tag span{writing-mode:horizontal-tb;transform:none}
+    .dispo-soc{flex-direction:row;gap:0}
+    .soc{width:32px;height:32px}.soc svg{width:18px;height:18px}
+    .hero{padding-top:calc(var(--band) + 4.6rem)}
+  }
+  @media (max-width:520px){.dispo-tag span{display:none}.dispo-tag::after{content:"Dispo"}}
+
   footer{background:#000;color:rgba(255,255,255,.65);padding-block:2.2rem;font-size:.92rem}
   footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
   footer a{color:#fff}
   footer .lam{color:#fff;font-size:1.3rem}
-  footer nav{display:flex;gap:1.2rem}
+  footer nav{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem}
 </style>
 </head>
 <body>
@@ -183,12 +203,16 @@
   </div>
 </header>
 
+<aside class="dispo" aria-label="Disponibilité et réseaux sociaux">
+  <a class="dispo-tag" href="#reserver"><i aria-hidden="true"></i><span>Disponible pour vos événements</span></a>
+  <nav class="dispo-soc" aria-label="Réseaux sociaux"><a class="soc" href="https://www.instagram.com/gaetanbartosz" rel="noopener" target="_blank" aria-label="Instagram de Gaëtan (nouvel onglet)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></svg></a><a class="soc" href="https://www.tiktok.com/@gaetanbartosz" rel="noopener" target="_blank" aria-label="TikTok de Gaëtan (nouvel onglet)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M14 3.2c.6 2.6 2.4 4.3 5 4.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a><a class="soc" href="https://www.facebook.com/GaetanBartoszFanpage" rel="noopener" target="_blank" aria-label="Facebook de Gaëtan (nouvel onglet)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.8l.5-3.4h-3.3V8.5c0-1 .4-1.7 1.8-1.7H17V3.8c-.4-.1-1.4-.2-2.6-.2-2.6 0-4.3 1.6-4.3 4.4v2.6H7.3V14h2.8v8z" fill="currentColor"/></svg></a><a class="soc" href="https://x.com/GaetanBartosz" rel="noopener" target="_blank" aria-label="X de Gaëtan (nouvel onglet)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h4.2L20 20h-4.2z" fill="currentColor"/><path d="M19.5 4 4.5 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a><a class="soc" href="https://www.threads.com/@gaetanbartosz" rel="noopener" target="_blank" aria-label="Threads de Gaëtan (nouvel onglet)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.8 10.6C16.2 7.4 14.2 6 11.8 6 8.4 6 6.2 8.6 6.2 12s2.2 6 5.6 6c2.6 0 4.6-1.4 4.6-3.6 0-2-1.7-3-4-2.9-1.8.1-2.9 1-2.8 2.2.1 1.1 1.2 1.7 2.4 1.6 2-.2 2.9-1.8 2.9-4.3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></a></nav>
+</aside>
 <main>
   <!-- ACCUEIL -->
   <section class="hero" id="accueil" aria-labelledby="nom">
     <div class="wrap">
       <div class="hero-top">
-        <span class="live"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Le matin sur Tipik · 88.8 FM à Bruxelles</span>
+        <span class="live"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Le Réveil de Tipik, 6h–9h · 88.8 FM</span>
         <h1 id="nom"><span class="sr">Gaëtan Bartosz</span><svg class="logo-hero" viewBox="0 0 797.83 173.50" aria-hidden="true" focusable="false"><use href="#logo"/></svg></h1>
       </div>
       <div>
@@ -217,8 +241,8 @@
 
       <div class="grille" role="list">
         <article class="show current" role="listitem">
-          <time>Le matin</time>
-          <div><h3>La matinale</h3><p>Il réveille les auditeurs de Tipik (RTBF) depuis 2023, sur 88.8 FM à Bruxelles et sur Auvio.</p></div>
+          <time>6h–9h</time>
+          <div><h3>Le Réveil de Tipik</h3><p>En duo avec Audrey, il réveille les auditeurs de Tipik (RTBF) depuis 2023, sur 88.8 FM à Bruxelles et sur Auvio.</p></div>
           <span class="chip now">Tipik · 88.8 FM</span>
         </article>
         <article class="show" role="listitem">
@@ -346,8 +370,11 @@
   <div class="wrap">
     <svg class="logo-foot" viewBox="0 0 797.83 173.50" aria-hidden="true" focusable="false"><use href="#logo"/></svg><span>© <span id="y"></span> Gaëtan Bartosz</span>
     <nav aria-label="Réseaux sociaux">
-      <a href="https://www.instagram.com/gaetanbartosz" rel="noopener">Instagram</a>
-      <a href="https://www.tiktok.com/@gaetanbartosz" rel="noopener">TikTok</a>
+      <a href="https://www.instagram.com/gaetanbartosz" rel="noopener" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@gaetanbartosz" rel="noopener" target="_blank">TikTok</a>
+      <a href="https://www.facebook.com/GaetanBartoszFanpage" rel="noopener" target="_blank">Facebook</a>
+      <a href="https://x.com/GaetanBartosz" rel="noopener" target="_blank">X</a>
+      <a href="https://www.threads.com/@gaetanbartosz" rel="noopener" target="_blank">Threads</a>
     </nav>
     <span>Design &amp; développement : Cris</span>
   </div>
